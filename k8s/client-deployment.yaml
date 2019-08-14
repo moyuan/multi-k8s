@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels: # Get a handle of Pods after they are created
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: moyuanchen/multi-client
+          ports:
+            - containerPort: 3000
